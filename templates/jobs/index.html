@@ -1,0 +1,327 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>NET Jobs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/custom-bs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/line-icons/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+  </head>
+  <body id="top">
+
+
+    <div class="site-wrap">
+    
+        <div class="site-mobile-menu site-navbar-target">
+          <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+              <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+          </div>
+          <div class="site-mobile-menu-body"></div>
+        </div> <!-- .site-mobile-menu -->
+        
+    
+        <!-- NAVBAR -->
+        <header class="site-navbar mt-3" >
+          <div class="container-fluid" >
+            <div class="row align-items-center" >
+              <div class="site-logo col-6 "><a class="effect-shine" href="{% url 'jobs:home' %}">NET Jobs</a></div>
+    
+              <nav class="mx-auto site-navigation">
+                <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                  <li><a href="{% url 'jobs:home' %}" class="nav-link active">Home</a></li>
+                  <li><a href="{% url 'jobs:about' %}">About us</a></li>
+                  {% if user.is_authenticated %}
+                  <li><a href="{% url 'jobs:profile' %}">Profile</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+              
+              <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+                <div class="ml-auto">
+                  {% if user.is_authenticated %}
+                  <form action="{% url 'accounts:logout' %}" method="POST">
+                    {% csrf_token %}
+                    <!-- <a href="{% url 'accounts:logout' %}" >Logout</a> -->
+                    <button class="btn btn-primary border-width-2 d-none d-lg-inline-block" type="submit">Log Out</button>
+                    <label class="switch">
+                      <input id="dark" type="checkbox">
+                      <span class="slider round"></span>
+                    </label>
+                   </form>
+               
+                  {% else %}
+                  <a href="{% url 'accounts:login' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block">Login</a>
+                  <a href="{% url 'accounts:signup' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block">Sign Up</a>
+                  <label class="switch">
+                    <input id="dark" type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                  {% endif %}
+                 </div>
+                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+              </div>
+    
+            </div>
+          </div>
+        </header>
+    <!-- HOME -->
+    <section class="home-section section-hero overlay bg-image"  id="home-section">
+
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-12">
+            <div class="mb-5 text-center">
+              <h1 class=" font-weight-bold" style="color:white;font-weight: bolder;">Your Dream Job is Waiting</h1>
+              <p style="color:white;font-weight: bolder;">Find your dream jobs on our powerful career website.</p>
+            </div>
+            <form action="{% url 'jobs:result'%}"method="post" class="search-jobs-form">  
+              {% csrf_token %}
+              <div class="row mb-5" style="justify-content: center;">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <select name='jobp' class="form-control">
+                    <option value="Job Profile">Job Profile</option>
+                    <option value="Software Developer">Software Developer</option>
+                    <option value="Accountant">Accountant</option>
+                    <option value="Web Developer">Web Developer</option>
+                    <option value="Data Analyst">Data Analyst</option>
+                    <option value="Data Scientist">Data Scientist</option>
+                    <option value="Android Developer">Android Developer</option>
+                    <option value="Java Developer">Java Developer</option>
+                    <option value="UX designer">UX designer</option>
+                    <option value="Technical sales engineer">Technical sales engineer</option>
+                    <option value="Retail manager">Retail manager</option>
+                    <option value="IT consultant">IT consultant</option>
+                    
+                    <option value="Graphic designer">Graphic designer</option>
+                    
+                    
+                  </select>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <select name='jobl'class="form-control">
+                    <option value="Location" >Location</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Gurugram">Gurugram</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Orissa">Orissa</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Surat">Surat</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Patna">Patna</option>
+                    <option value="Jalandhar">Jalandhar</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Amritsar">Amritsar</option>
+                  </select>
+                </div>
+               
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      
+    </section>
+
+    <section id= "darkmode" class="site-section">
+      <div class="container">
+
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-7 text-center">
+            <h2 class="section-title mb-2">Your Search Results</h2>
+          </div>
+        </div>
+
+       
+        <div class="mb-5 go">
+          {% for id,title,comapny,summary,date,link in data %}
+          <div class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
+            <!-- <div class="col-md-2">
+              <a href="job-single.html"><img src="images/featured-listing-1.jpg" alt="Image" class="img-fluid"></a>
+            </div> -->
+           
+
+            
+            <div class="col-md-4">
+              <span id ="job{{id}}" class="badge badge-primary px-2 py-1 mb-3">{{job}}</span>
+              
+              
+              <h2 id="title{{id}}" class="headi" >{{title}}</h2>
+              <p class="mt-1"><span class="badge badge-secondary px-2 py-1 mb-3 mr-1">Company</span><strong id="company{{id}}" class="com"style="text-align: justify;">{{comapny}}</strong> </p>
+            </div>
+
+            <div class="col-md-3 text-left">
+              <span class="badge badge-primary px-2 py-1 mb-3">Location</span>
+              <p><span id="location{{id}}" class="loc" style="text-align: justify;">{{location}}</span></p>
+            </div>
+
+            <div class="col-md-3 text-left">
+              <span class="badge badge-primary px-2 py-1 mb-3">Job Description</span>
+              <p><span style="text-align: justify;"class="sum">{{summary}}</span></p>
+            </div>
+
+            <div class="col-md-2 text-center">
+              <!-- <h3>Job Description</h3>
+              <span style="color:black;text-align: justify;">{{summary}}</span> -->
+              <span class="badge badge-success"><a id="apply{{id}}" href="{{link}}" onclick="getData('{{id}}')" target="_blank" style="text-decoration: none;color:white;font-size:1.1em;">Apply Now</a></span>
+            </div>
+           
+          </div>
+
+         {% endfor %}
+
+          
+
+
+      <div class="row pagination-wrap"  style="justify-content: center;">
+
+      <div class="text-center text-md-left">
+            <div class="custom-pagination ml-auto">  
+              {% if data.has_previous %}
+
+                <a href="?page=1" class="prev"><<</a>
+                <a href="?page={{data.previous_page_number }}" class="prev ml-auto">Previous</a>
+              {% endif %}
+              <div class="d-inline-block">
+              {% for num in data.paginator.page_range %}
+                {% if data.number == num %}
+                <button class="btn btn-dark" disabled>{{ num }}</button>
+                {% elif num > data.number|add:'-7' and num < data.number|add:'7' %}
+                <button class="btn btn-light" onclick='location.href="?page={{num}}"'> {{ num }}</button>
+                {% endif %}
+              {% endfor %}
+              </div>
+              {% if data.has_next %}
+                <a href="?page={{ data.next_page_number }}" class="next ml-auto">Next</a>
+                <a href="?page={{ data.paginator.num_pages }}" class="next ml-auto">>></a>
+              {% endif %}
+              </div>
+          </div>
+      </div>
+       
+          
+          
+          
+
+      
+    </section>
+    {% if user.is_authenticated %}
+    {% else %}
+    <section class="py-5 bg-image overlay-primary fixed overlay" style="background-image: url('images/hero_1.jpg');">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h2 class="text-white">Looking For A Job?</h2>
+            <p class="mb-0 text-white lead">We provide the best job searching website.</p>
+          </div>
+          <div class="col-md-3 ml-auto">
+            <a href="{% url 'accounts:signup' %}" class="btn btn-warning btn-block btn-lg">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<!-- Button trigger modal -->
+
+
+
+
+
+
+
+    {% endif %}
+    <footer id="footer" style="background: #242424 !important; text-align: center;padding: 1em;">
+      <div class="container">
+        <h3 style="color:azure">NET Jobs</h3>
+        <div class="social-links">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+        <div class="copyright">
+          &copy; Copyright <strong><span>NET Jobs</span></strong>. All Rights Reserved
+        </div>
+      </div>
+    </footer><!-- End Footer -->
+    
+    </div>
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js."></script>
+ <script src="{% static 'js/jquery.min.js' %}"></script>
+ <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+ <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+ <script src="{% static 'js/stickyfill.min.js' %}"></script>
+ <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+ <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+ 
+ 
+ <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+ <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+ <script src="{% static 'js/owl.carousel.min.js"></script>
+ 
+ <script src="{% static 'js/custom.js' %}"></script>
+ 
+ <script type="text/javascript">
+   
+  function getData(id)
+  {
+    
+    var com=document.getElementById("company"+id).innerText;
+    var loc=document.getElementById("location"+id).innerText;
+    var title=document.getElementById("title"+id).innerText;
+    var link=document.getElementById("apply"+id).href;
+    $.ajax({
+    type:'POST',
+    url:"{% url 'jobs:profiledata'%}",
+    data:{'company':com,'location':loc,'title':title,'link':link, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+    dataType:'json',
+    
+    success:function(response){
+      console.log(response)
+      
+
+    }
+  });
+  
+  return false;
+  }
+
+
+$("#dark").click(function() {
+  console.log("yes");
+  if($(this).is(":checked")){
+    $("#darkmode").addClass('justdo');
+  }    
+  else{
+    $("#darkmode").removeClass('justdo');
+  }
+  
+  }).change();
+
+
+</script>
+
+   
+</body>
+</html>
+

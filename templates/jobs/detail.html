@@ -1,0 +1,162 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>Careers &mdash; Website Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/custom-bs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/line-icons/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+  </head>
+  <body id="top">
+
+
+    <div class="site-wrap">
+    
+        <div class="site-mobile-menu site-navbar-target">
+          <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+              <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+          </div>
+          <div class="site-mobile-menu-body"></div>
+        </div> <!-- .site-mobile-menu -->
+        
+    
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'jobs:home'%}">Milao</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'jobs:home'%}">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="" >Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+   <div class="container">
+   		<div>
+   			<h3>Job Title : </h3>{{job.jobtitle}}
+   		</div>
+   		<br>
+   		<div>
+   			<h3>Job Description : </h3>{{job.jobdescription}}
+   		</div>
+   		<br>
+   		<div>
+   			<h3>Post Date : </h3>{{job.postdate}}
+   		</div>
+   		<br>
+   		<div>
+   			<h3>Company : </h3>{{job.company}}
+   		</div>
+   		<br>
+   		<div>
+   			<h3>Education : </h3>{{job.education}}
+   		</div>
+   		<br>
+   		<div>
+   			<h3>Experience : </h3>{{job.experience}}
+   		</div>
+   		<br>
+   		<div>
+   			<h3>Industry : </h3>{{job.industry}}
+   		</div>
+
+   		<div>
+   			<h3>Location : </h3>{{job.joblocation_address}}
+   		</div>
+   		<br>
+   		<div>
+   			<h3>Number of Positions : </h3>{{job.numberofpositions}}
+   		</div>
+   		<br>
+   		<div>
+   			<h3>Payrate : </h3>{{job.payrate}}
+   		</div>
+   		<br>
+   		<div>
+   			<h3>Site Name : </h3>{{job.site_name}}
+   		</div>
+   		<br>
+   		<div>
+   			<h3>Skills : </h3>{{job.skills}}
+   		</div>
+   		<br>
+   		<div>
+	   		<form action="{% url 'jobs:apply' job.id%}" id="myform" method='POST'>
+
+	   			{% csrf_token %}
+
+	   			<button type="button" id="something" class="btn btn-primary" >Apply Now</button>
+	   			
+	   		</form>
+   		</div>
+	</div>
+<!-- ======= Footer ======= -->
+<footer id="footer" style="background: #242424 !important; text-align: center;padding: 1em;">
+  <div class="container">
+    <h3 style="color:azure">Milao</h3>
+    <div class="social-links">
+      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    </div>
+    <div class="copyright">
+      &copy; Copyright <strong><span>Milao</span></strong>. All Rights Reserved
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+</div>
+
+  <!-- SCRIPTS -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/stickyfill.min.js' %}"></script>
+  <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+  
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js"></script>
+  
+  <script src="{% static 'js/custom.js' %}"></script>
+<script type="text/javascript">
+
+// 	$('#something').click( function() { alert('clicked'); 
+// console.log("vaibhav pagal hai");
+// 	alert("Successfully Applied");
+// 	$(#myform).submit();  
+// 	});
+
+
+	$("#something").click(function(){
+
+	  alert("Successfully Applied");
+	  $("#myform").submit();
+});
+ 
+</script>
+   
+</body>
+</html>
+
+
+	

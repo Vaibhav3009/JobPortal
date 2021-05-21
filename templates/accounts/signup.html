@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <link rel="stylesheet" href='{% static "/css/login.css" %}?{% now "U" %}'>
+    <title>USER</title>
+</head>
+<body >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'jobs:home' %}">NET Jobs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            
+            <li class="nav-item">
+                {% if user.is_authenticated %}
+                <form action=" {% url 'accounts:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-primary btn-sm" type="submit">Log Out</button>
+                </form>
+                {% endif %}
+            </li>
+           
+          </ul>
+          
+        </div>
+      </nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 mt-3">
+            <h1>Signup</h1>
+            <div class="form">
+                <form id="signup" action="/accounts/signup/" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <a href="{% url 'accounts:login' %}">Already have an account?</a>
+                    <input class='btn btn-primary' type="submit" value="Signup">
+                </form>
+                <button class="btn btn-primary"
+                    onclick="location.href='http://127.0.0.1:8000/allauth/google/login/'">Signup with Google</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
+            <h1>Log In</h1>
+            <div class="form">
+                <form id="login" action="{% url 'accounts:login' %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <a href="{% url 'accounts:signup' %}">Dont have an account?</a>
+                    <div class="submit">
+                        <input type="submit" class="btn btn-primary" value="Log In">
+                    </div>
+                </form>
+                <div class="loginwithgoogle">
+                    <button class="btn btn-primary"
+                        onclick="location.href='http://127.0.0.1:8000/allauth/google/login/'">Login
+                        with Google</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->

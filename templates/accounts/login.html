@@ -1,0 +1,29 @@
+{% extends "accounts/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid ">
+    <div class="row logrow ">
+        <div class="col-md-6 col-lg-4 mt-3 bg-img">
+            <h1>Log In</h1>
+            <div class="form">
+                <form id="login" action="{% url 'accounts:login' %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <a href="{% url 'accounts:signup' %}">Dont have an account?</a>
+
+                    <input type="submit" class="btn btn-dark" value="Log In">
+
+                </form>
+
+                <button class="btn btn-dark"
+                    onclick="location.href='http://127.0.0.1:8000/allauth/google/login/'">Login
+                    with Google</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
