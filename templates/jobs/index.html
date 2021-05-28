@@ -41,6 +41,7 @@
                   <li><a href="{% url 'jobs:about' %}">About us</a></li>
                   {% if user.is_authenticated %}
                   <li><a href="{% url 'jobs:profile' %}">Profile</a></li>
+                  
                   {% endif %}
                 </ul>
               </nav>
@@ -48,6 +49,7 @@
               <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
                 <div class="ml-auto">
                   {% if user.is_authenticated %}
+                  
                   <form action="{% url 'accounts:logout' %}" method="POST">
                     {% csrf_token %}
                     <!-- <a href="{% url 'accounts:logout' %}" >Logout</a> -->
@@ -59,7 +61,7 @@
                    </form>
                
                   {% else %}
-                  <a href="{% url 'accounts:login' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block">Login</a>
+                  <a href="{% url 'accounts:login' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block" >Login</a>
                   <a href="{% url 'accounts:signup' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block">Sign Up</a>
                   <label class="switch">
                     <input id="dark" type="checkbox">
@@ -67,7 +69,7 @@
                   </label>
                   {% endif %}
                  </div>
-                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+                <a id="collapse"href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
               </div>
     
             </div>
@@ -87,7 +89,7 @@
               {% csrf_token %}
               <div class="row mb-5" style="justify-content: center;">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                  <select name='jobp' class="form-control">
+                  <select name='jobp'  class="form-control">
                     <option value="Job Profile">Job Profile</option>
                     <option value="Software Developer">Software Developer</option>
                     <option value="Accountant">Accountant</option>
